@@ -1,0 +1,103 @@
+
+<h4>Hi, <%= session[:player_name]%></h4>
+<h4>Welcome to The Rubymon World</h4>
+<h4>You could choose one of the Rubymons that we have to you!!!!</h4>
+<div class='well' style = 'width:870px; height:250px;'>
+	<img src='/images/bulba.png' style = 'width:250px; height:250px;'>
+	<img src='/images/charma.png' style = 'width:150px; height:250px;'>
+	<img src='/images/pika.png' style = 'width:150px; height:250px;'>
+
+	<div class = 'well' style = 'float:left;width:250px; height:60px;'>
+		<div class = 'well'>
+			Name: Bulbasaur</br>
+			Type: Grass</br>
+			Special Attack: PowerWhip
+		</div>
+		<a data-toggle="modal" href="#ModalBulba" class="btn btn-success btn-small btn-block">CHOOSE BULBASAUR</a>
+	</div>
+
+
+	<div class = 'well' style = 'float:left;width:250px; height:60px;'>
+		<div class = 'well'>
+			Name: Charmander</br>
+			Type: Fire</br>
+			Special Attack: BabyFlame
+		</div>
+		<a data-toggle="modal" href="#ModalCharma" class="btn btn-danger btn-small btn-block">CHOOSE CHARMANDER</a>
+	</div>
+
+	<div class = 'well' style = 'float:left;width:250px; height:60px;'>
+		<div class = 'well'>
+			Name: Pikachu</br>
+			Type: Electric</br>
+			Special Attack: ThunderBolt
+		</div>
+		<a data-toggle="modal" href="#ModalPika" class="btn btn-warning btn-small btn-block">CHOOSE PIKACHU</a>
+	</div>
+	
+</div>
+
+
+
+<div id="ModalBulba" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">YOU HAVE CHOOSEN BULBASAR!!!</h4>
+      </div>
+      <div class="modal-body">
+        <img src='/images/bulba2.png' style = 'width:400px; height:300px;'>
+      </div>
+      <div class="modal-footer">
+        <form action='/create_friend' method='post'>
+          <input type='hidden' value='Bulbasaur' name='friend_name'/>
+          <input type='hidden' value='PowerWhip' name='friend_special'/>
+			<input type='submit' class='btn btn-success' value='BEGIN JOURNEY'/>
+		</form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="ModalCharma" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">YOU HAVE CHOOSEN CHARMANDER!!!</h4>
+      </div>
+      <div class="modal-body">
+        <img src='/images/charma2.png' style = 'width:350px; height:350px;'>
+      </div>
+      <div class="modal-footer">
+        <form action='/create_friend' method='post'>
+          <input type='hidden' value='Charmander' name='friend_name'/>
+          <input type='hidden' value='BabyFlame' name='friend_special'/>
+			<input type='submit' class='btn btn-danger' value='BEGIN JOURNEY'/>
+		</form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div id="ModalPika" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">YOU HAVE CHOOSEN PIKACHU!!!</h4>
+      </div>
+      <div class="modal-body">
+        <img src='/images/pika2.png' style = 'width:350px; height:350px;'>
+      </div>
+      <div class="modal-footer">
+        <form action='/create_friend' method='post'>
+          <input type='hidden' value='Pikachu' name='friend_name'/>
+          <input type='hidden' value='ThunderBolt' name='friend_special'/>
+			<input type='submit' class='btn btn-warning' value='BEGIN JOURNEY'/>
+		    </form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
