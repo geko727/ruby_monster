@@ -1,63 +1,94 @@
-<h5>Here comes a new challenger!!!</h5>
-<div class="well" style="width: 600px;">
-	<img src="/images/gengar.png" style="width: 150px; height: 150px; margin: 5px 0px 5px 50px;"/>
-	<div class="well" style="float: right; margin-top: -10px; margin-right: 50px">
-		Name: <%= session[:enemy_name]%></br>
-	</br>
-		Level: <%= session[:enemy_level]%></br>
-	</br>	
-		SpecialMove: <%= session[:enemy_special]%></br>
-	</br>	
-		Hp: <%= session[:enemy_health]%></br>
-	</div>
-</div>
+<div id="battle">
+	<%if @miss %>
+      <div class="alert alert-error"><%=@miss%></div>
+    <% end %>
+    <%if @hit %>
+      <div class="alert alert-success"><%=@hit%></div>
+    <% end %>
 
-<div class="well" style="float: left; width: 250px;">
-	You have to choose a move
-	<!-- Single button -->
-	<div class="btn-group">
-	  <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
-	    Action <span class="caret"></span>
-	  </button>
-	  <ul class="dropdown-menu">
-	    <li><a href="#">Attack</a></li>
-	    <li><a href="#">Defense</a></li>
-	    <li><a href="#">SpecialMove</a></li>
-	    <li class="divider"></li>
-	    <li><a data-toggle="modal" href="#Run">Run</a></li>
-	  </ul>
-	</div> 	
-</div>
+    <% if @enemy_turn %>
+		<input id="enemy_btn" type='submit' class='btn btn-inverse' value = 'Enemy turn'/>
+	<% end %>
 
-<div class="well" style="float: right; width: 600px;">
-	<%= imagen %>
-	<div class="well" style="float: left; margin-top: -10px; margin-right: 50px">
-		Name: <%= session[:friend_name]%></br>
-	</br>
-		Level: <%= session[:friend_level]%></br>
-	</br>	
-		SpecialMove: <%= session[:friend_special]%></br>
-	</br>	
-		Hp: <%= session[:friend_health]%></br>
+
+	<h5>Here comes a new challenger!!!</h5>
+	<div class="well" style="width: 600px;">
+		<img src="/images/gengar.png" style="width: 150px; height: 150px; margin: 5px 0px 5px 50px;"/>
+		<div class="well" style="float: right; margin-top: -10px; margin-right: 50px">
+			Name: <%= session[:enemy_name]%></br>
+		</br>
+			Level: <%= session[:enemy_level]%></br>
+		</br>	
+			SpecialMove: <%= session[:enemy_special]%></br>
+		</br>	
+			Hp: <%= session[:enemy_health]%></br>
+		</div>
 	</div>
-</div>
- 
-<div id="Run" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-         <h4 class="modal-title">YOU RAN LIKE A COWARD :'(</h4>
-      </div>
-      <div class="modal-body">
-        <img src='/images/run.png' style = 'width:350px; height:350px;'>
-      </div>
-      <div class="modal-footer">
-        <form action='/create_friend' method='post'>
-          <input type='hidden' value='Pikachu' name='friend_name'/>
-          <input type='hidden' value='ThunderBolt' name='friend_special'/>
-			<input type='submit' class='btn btn-warning' value='CONTINUE JOURNEY'/>
-		    </form>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+
+	<div class="well" style="float: left; width: 250px;">
+		You have to choose a move
+		<!-- Single button -->
+		<div class="btn-group">
+		  <button type="button" class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
+		    Action <span class="caret"></span>
+		  </button>
+		  <ul class="dropdown-menu">
+		    <li><a id='attack' rubymon='<%=session[:friend_name]%>'>Attack</a></li>
+		    <li><a id='defense' rubymon='<%=session[:friend_name]%>'>Defense</a></li>
+		    <li><a id='special' rubymon='<%=session[:friend_name]%>' smove='<%=session[:friend_special]%>'>SpecialMove</a></li>
+		    <li class="divider"></li>
+		    <li><a data-toggle="modal" href="#Run">Run</a></li>
+		  </ul>
+		</div> 	
+	</div>
+
+	<div class="well" style="float: right; width: 600px;">
+		<%= imagen %>
+		<div class="well" style="float: left; margin-top: -10px; margin-right: 50px">
+			Name: <%= session[:friend_name]%></br>
+		</br>
+			Level: <%= session[:friend_level]%></br>
+		</br>	
+			SpecialMove: <%= session[:friend_special]%></br>
+		</br>	
+			Hp: <%= session[:friend_health]%></br>
+		</div>
+	</div>
+	 
+	<div id="Run" class="modal fade">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	         <h4 class="modal-title">YOU RAN LIKE A COWARD :'(</h4>
+	      </div>
+	      <div class="modal-body">
+	        <img src='/images/run.png' style = 'width:350px; height:350px;'>
+	      </div>
+	      <div class="modal-footer">
+	        <form action='/adventure' method='post'>
+	          	<input type='submit' class='btn btn-warning' value='CONTINUE JOURNEY'/>
+			    </form>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+	<div id="attack" class="modal fade">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	         <h4 class="modal-title"><%= session[:friend_name]%> use tackle</h4>
+	      </div>
+	      <div class="modal-body">
+	        <img src='/images/tackle.png' style = 'width:350px; height:350px;'>
+	      </div>
+	      <div class="modal-footer">
+	        <form action='/create_friend' method='post'>
+	          	<input type='submit' class='btn btn-warning' value='CONTINUE'/>
+			    </form>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+</div>	
