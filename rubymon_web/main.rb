@@ -152,7 +152,8 @@ post "/attack" do
 	 		#@evil_turn += 1
 			#	enemy_action
 	elsif @i == 2
-		if @enemy_defense == true
+		
+		if @enemy_defense 
 			prng = Random.new
 			e = prng.rand(1..2)
 			if e == 1 
